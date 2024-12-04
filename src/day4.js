@@ -82,3 +82,31 @@ for (const line of lines) {
   occurrences += (line.match(new RegExp(searchWordReversed, "g")) || []).length;
 }
 console.log("part 1: ", occurrences);
+
+function extractCrosses(array) {
+  const result = [];
+  for (let i = 0; i < array.length - 2; i++) {
+    for (let j = 0; j < array[0].length - 2; j++) {
+      const cross = [
+        [array[i][j], array[i][j + 1], array[i][j + 2]],
+        [array[i + 1][j], array[i + 1][j + 1], array[i + 1][j + 2]],
+        [array[i + 2][j], array[i + 2][j + 1], array[i + 2][j + 2]],
+      ];
+      result.push(cross);
+    }
+  }
+  return result;
+}
+
+function isXmas(cross) {
+  if (cross[1][1] != "A") return false;
+  return (
+    ((cross[0][0] == "M" && cross[2][2] == "S") ||
+      (cross[0][0] == "S" && cross[2][2] == "M")) &&
+    ((cross[0][2] == "M" && cross[2][0] == "S") ||
+      (cross[0][2] == "S" && cross[2][0] == "M"))
+  );
+}
+
+const crosses = extractCrosses(charLineArray);
+console.log("part 2: ", crosses.filter(isXmas).length);

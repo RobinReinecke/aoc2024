@@ -1,0 +1,10 @@
+{
+  "name": "aoc2024",
+  "type": "module",
+  "scripts": {
+    "day1": "bun src/day1.js",
+    "day2": "bun src/day2.js",
+    "day3": "bun src/day3.js",
+    "day4": "bun src/day4.js"
+  }
+}
